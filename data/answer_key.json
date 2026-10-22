@@ -1,0 +1,101 @@
+[
+  {
+    "issue_id": 1,
+    "issue_type": "subtotal_row",
+    "file": "A",
+    "severity": "critical",
+    "rows": [
+      {
+        "month": "2025-03",
+        "region": "North",
+        "product": "Total"
+      },
+      {
+        "month": "2025-06",
+        "region": "South",
+        "product": ""
+      }
+    ],
+    "description": "Region subtotal rows mixed in with product rows; summing the column double-counts those region-months."
+  },
+  {
+    "issue_id": 2,
+    "issue_type": "duplicate_row",
+    "file": "A",
+    "severity": "high",
+    "rows": [
+      {
+        "month": "2025-04",
+        "region": "East",
+        "product": "Cola 500ml"
+      },
+      {
+        "month": "2025-04",
+        "region": "East",
+        "product": "Diet Cola 500ml"
+      },
+      {
+        "month": "2025-04",
+        "region": "East",
+        "product": "Lemon Soda 330ml"
+      }
+    ],
+    "description": "Three rows appear twice."
+  },
+  {
+    "issue_id": 3,
+    "issue_type": "missing_period",
+    "file": "A",
+    "severity": "high",
+    "rows": [
+      {
+        "month": "2025-08",
+        "region": "East",
+        "product": null
+      }
+    ],
+    "description": "All East rows for 2025-08 are missing from File A."
+  },
+  {
+    "issue_id": 4,
+    "issue_type": "reconciliation_gap",
+    "file": "B",
+    "severity": "high",
+    "rows": [
+      {
+        "month": "2025-10",
+        "region": "West",
+        "product": "Cola 500ml"
+      }
+    ],
+    "description": "Finance revenue for West 2025-10 is GBP 2,500.00 lower than the sales system (an unexplained manual adjustment)."
+  },
+  {
+    "issue_id": 5,
+    "issue_type": "unit_mismatch",
+    "file": "A",
+    "severity": "critical",
+    "rows": [
+      {
+        "month": "2025-05",
+        "region": "South",
+        "product": "Lemon Soda 330ml"
+      }
+    ],
+    "description": "Volume recorded in bottles (x24) while the unit says cases."
+  },
+  {
+    "issue_id": 6,
+    "issue_type": "outlier",
+    "file": "A",
+    "severity": "high",
+    "rows": [
+      {
+        "month": "2025-11",
+        "region": "North",
+        "product": "Orange Juice 1L"
+      }
+    ],
+    "description": "Volume and revenue are 10x the normal level for this product/region."
+  }
+]

@@ -1,0 +1,289 @@
+month,region,product,unit,volume,revenue_gbp
+2025-01,North,Cola 500ml,cases,860,8084.28
+2025-01,North,Diet Cola 500ml,cases,594,5809.67
+2025-01,North,Lemon Soda 330ml,cases,354,2482.42
+2025-01,North,Orange Juice 1L,cases,283,4049.42
+2025-01,North,Still Water 1.5L,cases,1049,4949.3
+2025-01,North,Energy Drink 250ml,cases,225,4113.0
+2025-01,South,Cola 500ml,cases,1098,10778.44
+2025-01,South,Diet Cola 500ml,cases,755,7123.44
+2025-01,South,Lemon Soda 330ml,cases,562,3968.8
+2025-01,South,Orange Juice 1L,cases,390,5610.39
+2025-01,South,Still Water 1.5L,cases,1345,6368.08
+2025-01,South,Energy Drink 250ml,cases,300,5383.31
+2025-01,East,Cola 500ml,cases,649,6186.52
+2025-01,East,Diet Cola 500ml,cases,467,4515.97
+2025-01,East,Lemon Soda 330ml,cases,347,2519.93
+2025-01,East,Orange Juice 1L,cases,262,3742.13
+2025-01,East,Still Water 1.5L,cases,806,3805.83
+2025-01,East,Energy Drink 250ml,cases,176,3239.53
+2025-01,West,Cola 500ml,cases,916,8645.84
+2025-01,West,Diet Cola 500ml,cases,575,5591.83
+2025-01,West,Lemon Soda 330ml,cases,489,3559.05
+2025-01,West,Orange Juice 1L,cases,292,4224.32
+2025-01,West,Still Water 1.5L,cases,1166,5621.28
+2025-01,West,Energy Drink 250ml,cases,247,4465.88
+2025-02,North,Cola 500ml,cases,936,8997.74
+2025-02,North,Diet Cola 500ml,cases,606,5891.05
+2025-02,North,Lemon Soda 330ml,cases,392,2804.36
+2025-02,North,Orange Juice 1L,cases,285,4051.56
+2025-02,North,Still Water 1.5L,cases,1086,5368.66
+2025-02,North,Energy Drink 250ml,cases,207,3798.16
+2025-02,South,Cola 500ml,cases,999,9526.17
+2025-02,South,Diet Cola 500ml,cases,780,7575.79
+2025-02,South,Lemon Soda 330ml,cases,610,4461.69
+2025-02,South,Orange Juice 1L,cases,374,5335.8
+2025-02,South,Still Water 1.5L,cases,1542,7373.28
+2025-02,South,Energy Drink 250ml,cases,259,4556.33
+2025-02,East,Cola 500ml,cases,658,6379.61
+2025-02,East,Diet Cola 500ml,cases,479,4661.9
+2025-02,East,Lemon Soda 330ml,cases,343,2477.43
+2025-02,East,Orange Juice 1L,cases,249,3563.42
+2025-02,East,Still Water 1.5L,cases,921,4362.28
+2025-02,East,Energy Drink 250ml,cases,172,3072.36
+2025-02,West,Cola 500ml,cases,884,8569.05
+2025-02,West,Diet Cola 500ml,cases,627,6020.7
+2025-02,West,Lemon Soda 330ml,cases,507,3683.0
+2025-02,West,Orange Juice 1L,cases,343,4929.47
+2025-02,West,Still Water 1.5L,cases,1180,5654.97
+2025-02,West,Energy Drink 250ml,cases,211,3688.08
+2025-03,North,Cola 500ml,cases,912,8580.58
+2025-03,North,Diet Cola 500ml,cases,702,6617.16
+2025-03,North,Lemon Soda 330ml,cases,495,3656.61
+2025-03,North,Orange Juice 1L,cases,330,4822.09
+2025-03,North,Still Water 1.5L,cases,1180,5640.73
+2025-03,North,Energy Drink 250ml,cases,236,4219.2
+2025-03,South,Cola 500ml,cases,1415,13114.72
+2025-03,South,Diet Cola 500ml,cases,915,8825.77
+2025-03,South,Lemon Soda 330ml,cases,631,4411.81
+2025-03,South,Orange Juice 1L,cases,445,6340.14
+2025-03,South,Still Water 1.5L,cases,1688,8105.94
+2025-03,South,Energy Drink 250ml,cases,374,6699.77
+2025-03,East,Cola 500ml,cases,749,7216.18
+2025-03,East,Diet Cola 500ml,cases,554,5462.97
+2025-03,East,Lemon Soda 330ml,cases,435,3154.35
+2025-03,East,Orange Juice 1L,cases,304,4273.52
+2025-03,East,Still Water 1.5L,cases,968,4560.3
+2025-03,East,Energy Drink 250ml,cases,198,3465.87
+2025-03,West,Cola 500ml,cases,1179,11268.1
+2025-03,West,Diet Cola 500ml,cases,660,6207.31
+2025-03,West,Lemon Soda 330ml,cases,575,4209.4
+2025-03,West,Orange Juice 1L,cases,434,6613.81
+2025-03,West,Still Water 1.5L,cases,1449,6817.55
+2025-03,West,Energy Drink 250ml,cases,233,4216.46
+2025-04,North,Cola 500ml,cases,1122,10681.72
+2025-04,North,Diet Cola 500ml,cases,761,7285.03
+2025-04,North,Lemon Soda 330ml,cases,651,4701.92
+2025-04,North,Orange Juice 1L,cases,395,5570.18
+2025-04,North,Still Water 1.5L,cases,1299,6174.56
+2025-04,North,Energy Drink 250ml,cases,299,5572.3
+2025-04,South,Cola 500ml,cases,1576,15426.97
+2025-04,South,Diet Cola 500ml,cases,998,9353.75
+2025-04,South,Lemon Soda 330ml,cases,720,5108.81
+2025-04,South,Orange Juice 1L,cases,609,8625.54
+2025-04,South,Still Water 1.5L,cases,2081,9808.42
+2025-04,South,Energy Drink 250ml,cases,419,7600.07
+2025-04,East,Cola 500ml,cases,948,9093.38
+2025-04,East,Diet Cola 500ml,cases,606,5869.5
+2025-04,East,Lemon Soda 330ml,cases,463,3251.89
+2025-04,East,Orange Juice 1L,cases,287,4147.07
+2025-04,East,Still Water 1.5L,cases,1352,6510.37
+2025-04,East,Energy Drink 250ml,cases,238,4308.49
+2025-04,West,Cola 500ml,cases,1458,14058.21
+2025-04,West,Diet Cola 500ml,cases,851,8350.36
+2025-04,West,Lemon Soda 330ml,cases,683,5068.64
+2025-04,West,Orange Juice 1L,cases,446,6265.12
+2025-04,West,Still Water 1.5L,cases,1469,7284.02
+2025-04,West,Energy Drink 250ml,cases,376,6743.7
+2025-05,North,Cola 500ml,cases,1338,13220.24
+2025-05,North,Diet Cola 500ml,cases,839,7910.27
+2025-05,North,Lemon Soda 330ml,cases,726,5185.95
+2025-05,North,Orange Juice 1L,cases,460,6602.35
+2025-05,North,Still Water 1.5L,cases,1772,8745.03
+2025-05,North,Energy Drink 250ml,cases,348,6344.67
+2025-05,South,Cola 500ml,cases,1500,14385.97
+2025-05,South,Diet Cola 500ml,cases,1115,10443.08
+2025-05,South,Lemon Soda 330ml,cases,834,5964.67
+2025-05,South,Orange Juice 1L,cases,642,8999.56
+2025-05,South,Still Water 1.5L,cases,2248,10685.91
+2025-05,South,Energy Drink 250ml,cases,437,8023.75
+2025-05,East,Cola 500ml,cases,1152,11355.01
+2025-05,East,Diet Cola 500ml,cases,727,6882.06
+2025-05,East,Lemon Soda 330ml,cases,542,3921.33
+2025-05,East,Orange Juice 1L,cases,373,5254.71
+2025-05,East,Still Water 1.5L,cases,1390,6702.45
+2025-05,East,Energy Drink 250ml,cases,332,6200.32
+2025-05,West,Cola 500ml,cases,1414,13496.38
+2025-05,West,Diet Cola 500ml,cases,894,8481.01
+2025-05,West,Lemon Soda 330ml,cases,778,5736.69
+2025-05,West,Orange Juice 1L,cases,476,6764.72
+2025-05,West,Still Water 1.5L,cases,1572,7521.05
+2025-05,West,Energy Drink 250ml,cases,347,6179.86
+2025-06,North,Cola 500ml,cases,1406,13472.15
+2025-06,North,Diet Cola 500ml,cases,866,8069.67
+2025-06,North,Lemon Soda 330ml,cases,885,6207.93
+2025-06,North,Orange Juice 1L,cases,460,6867.35
+2025-06,North,Still Water 1.5L,cases,2329,10917.26
+2025-06,North,Energy Drink 250ml,cases,367,6651.13
+2025-06,South,Cola 500ml,cases,2237,21051.34
+2025-06,South,Diet Cola 500ml,cases,1284,12518.04
+2025-06,South,Lemon Soda 330ml,cases,1017,7267.31
+2025-06,South,Orange Juice 1L,cases,648,9074.61
+2025-06,South,Still Water 1.5L,cases,2410,11506.37
+2025-06,South,Energy Drink 250ml,cases,500,8900.04
+2025-06,East,Cola 500ml,cases,1255,12292.02
+2025-06,East,Diet Cola 500ml,cases,816,7888.71
+2025-06,East,Lemon Soda 330ml,cases,607,4370.41
+2025-06,East,Orange Juice 1L,cases,380,5506.64
+2025-06,East,Still Water 1.5L,cases,1500,7501.42
+2025-06,East,Energy Drink 250ml,cases,340,6167.23
+2025-06,West,Cola 500ml,cases,1561,14652.2
+2025-06,West,Diet Cola 500ml,cases,1214,11715.64
+2025-06,West,Lemon Soda 330ml,cases,863,5996.8
+2025-06,West,Orange Juice 1L,cases,595,8645.87
+2025-06,West,Still Water 1.5L,cases,1894,9005.47
+2025-06,West,Energy Drink 250ml,cases,425,7658.03
+2025-07,North,Cola 500ml,cases,1524,14600.12
+2025-07,North,Diet Cola 500ml,cases,1019,9812.25
+2025-07,North,Lemon Soda 330ml,cases,872,5956.11
+2025-07,North,Orange Juice 1L,cases,510,7369.93
+2025-07,North,Still Water 1.5L,cases,1996,9509.54
+2025-07,North,Energy Drink 250ml,cases,335,6069.56
+2025-07,South,Cola 500ml,cases,2308,21477.09
+2025-07,South,Diet Cola 500ml,cases,1445,13780.85
+2025-07,South,Lemon Soda 330ml,cases,1009,7111.82
+2025-07,South,Orange Juice 1L,cases,658,9721.56
+2025-07,South,Still Water 1.5L,cases,2653,13175.6
+2025-07,South,Energy Drink 250ml,cases,555,10077.73
+2025-07,East,Cola 500ml,cases,1422,13771.06
+2025-07,East,Diet Cola 500ml,cases,887,8464.69
+2025-07,East,Lemon Soda 330ml,cases,627,4451.43
+2025-07,East,Orange Juice 1L,cases,449,6313.23
+2025-07,East,Still Water 1.5L,cases,1658,7928.05
+2025-07,East,Energy Drink 250ml,cases,341,6230.18
+2025-07,West,Cola 500ml,cases,1966,19149.45
+2025-07,West,Diet Cola 500ml,cases,1000,9587.14
+2025-07,West,Lemon Soda 330ml,cases,778,5543.54
+2025-07,West,Orange Juice 1L,cases,641,9348.09
+2025-07,West,Still Water 1.5L,cases,2025,9522.93
+2025-07,West,Energy Drink 250ml,cases,430,7551.68
+2025-08,North,Cola 500ml,cases,1431,13823.33
+2025-08,North,Diet Cola 500ml,cases,1101,10698.29
+2025-08,North,Lemon Soda 330ml,cases,617,4469.44
+2025-08,North,Orange Juice 1L,cases,507,7361.23
+2025-08,North,Still Water 1.5L,cases,2134,9820.52
+2025-08,North,Energy Drink 250ml,cases,360,6556.58
+2025-08,South,Cola 500ml,cases,1717,16969.77
+2025-08,South,Diet Cola 500ml,cases,1349,13169.67
+2025-08,South,Lemon Soda 330ml,cases,938,6863.52
+2025-08,South,Orange Juice 1L,cases,711,10286.09
+2025-08,South,Still Water 1.5L,cases,2503,12079.36
+2025-08,South,Energy Drink 250ml,cases,457,8201.73
+2025-08,East,Cola 500ml,cases,1195,11559.97
+2025-08,East,Diet Cola 500ml,cases,871,8184.58
+2025-08,East,Lemon Soda 330ml,cases,599,4440.58
+2025-08,East,Orange Juice 1L,cases,379,5367.85
+2025-08,East,Still Water 1.5L,cases,1536,7497.31
+2025-08,East,Energy Drink 250ml,cases,303,5598.96
+2025-08,West,Cola 500ml,cases,1777,17346.42
+2025-08,West,Diet Cola 500ml,cases,1158,11634.32
+2025-08,West,Lemon Soda 330ml,cases,818,5653.6
+2025-08,West,Orange Juice 1L,cases,625,8917.61
+2025-08,West,Still Water 1.5L,cases,2097,10329.23
+2025-08,West,Energy Drink 250ml,cases,362,6352.89
+2025-09,North,Cola 500ml,cases,1203,11365.37
+2025-09,North,Diet Cola 500ml,cases,952,9235.01
+2025-09,North,Lemon Soda 330ml,cases,705,4932.58
+2025-09,North,Orange Juice 1L,cases,375,5405.87
+2025-09,North,Still Water 1.5L,cases,1660,8041.21
+2025-09,North,Energy Drink 250ml,cases,364,6570.12
+2025-09,South,Cola 500ml,cases,1903,18352.55
+2025-09,South,Diet Cola 500ml,cases,1247,11802.48
+2025-09,South,Lemon Soda 330ml,cases,884,6389.85
+2025-09,South,Orange Juice 1L,cases,637,9100.57
+2025-09,South,Still Water 1.5L,cases,2336,11153.18
+2025-09,South,Energy Drink 250ml,cases,444,8124.59
+2025-09,East,Cola 500ml,cases,928,8677.8
+2025-09,East,Diet Cola 500ml,cases,649,5939.61
+2025-09,East,Lemon Soda 330ml,cases,522,3814.73
+2025-09,East,Orange Juice 1L,cases,360,5204.51
+2025-09,East,Still Water 1.5L,cases,1500,7391.19
+2025-09,East,Energy Drink 250ml,cases,274,5065.52
+2025-09,West,Cola 500ml,cases,1529,14432.57
+2025-09,West,Diet Cola 500ml,cases,964,8980.37
+2025-09,West,Lemon Soda 330ml,cases,705,5039.65
+2025-09,West,Orange Juice 1L,cases,539,8028.72
+2025-09,West,Still Water 1.5L,cases,1688,8166.06
+2025-09,West,Energy Drink 250ml,cases,348,6323.47
+2025-10,North,Cola 500ml,cases,1187,10977.93
+2025-10,North,Diet Cola 500ml,cases,859,8146.62
+2025-10,North,Lemon Soda 330ml,cases,574,4044.38
+2025-10,North,Orange Juice 1L,cases,379,5504.31
+2025-10,North,Still Water 1.5L,cases,1477,7136.2
+2025-10,North,Energy Drink 250ml,cases,309,5708.91
+2025-10,South,Cola 500ml,cases,1517,14133.04
+2025-10,South,Diet Cola 500ml,cases,1129,10766.54
+2025-10,South,Lemon Soda 330ml,cases,850,6166.93
+2025-10,South,Orange Juice 1L,cases,515,7467.73
+2025-10,South,Still Water 1.5L,cases,2254,11268.63
+2025-10,South,Energy Drink 250ml,cases,392,7078.61
+2025-10,East,Cola 500ml,cases,1043,9843.45
+2025-10,East,Diet Cola 500ml,cases,657,6303.94
+2025-10,East,Lemon Soda 330ml,cases,492,3483.36
+2025-10,East,Orange Juice 1L,cases,279,3851.03
+2025-10,East,Still Water 1.5L,cases,1093,5198.27
+2025-10,East,Energy Drink 250ml,cases,234,4375.19
+2025-10,West,Cola 500ml,cases,1437,11029.76
+2025-10,West,Diet Cola 500ml,cases,904,8607.74
+2025-10,West,Lemon Soda 330ml,cases,645,4661.21
+2025-10,West,Orange Juice 1L,cases,462,6607.66
+2025-10,West,Still Water 1.5L,cases,1790,8395.77
+2025-10,West,Energy Drink 250ml,cases,330,6248.6
+2025-11,North,Cola 500ml,cases,1038,10250.43
+2025-11,North,Diet Cola 500ml,cases,685,6652.38
+2025-11,North,Lemon Soda 330ml,cases,508,3645.13
+2025-11,North,Orange Juice 1L,cases,319,4633.13
+2025-11,North,Still Water 1.5L,cases,1188,5778.31
+2025-11,North,Energy Drink 250ml,cases,277,5022.55
+2025-11,South,Cola 500ml,cases,1296,12554.56
+2025-11,South,Diet Cola 500ml,cases,862,8430.04
+2025-11,South,Lemon Soda 330ml,cases,566,4047.85
+2025-11,South,Orange Juice 1L,cases,372,5196.63
+2025-11,South,Still Water 1.5L,cases,1838,8980.35
+2025-11,South,Energy Drink 250ml,cases,312,5447.24
+2025-11,East,Cola 500ml,cases,622,5906.29
+2025-11,East,Diet Cola 500ml,cases,649,6284.59
+2025-11,East,Lemon Soda 330ml,cases,390,2834.12
+2025-11,East,Orange Juice 1L,cases,238,3406.82
+2025-11,East,Still Water 1.5L,cases,1028,4925.9
+2025-11,East,Energy Drink 250ml,cases,217,3932.92
+2025-11,West,Cola 500ml,cases,1182,11190.98
+2025-11,West,Diet Cola 500ml,cases,802,7950.03
+2025-11,West,Lemon Soda 330ml,cases,517,3656.31
+2025-11,West,Orange Juice 1L,cases,414,5938.79
+2025-11,West,Still Water 1.5L,cases,1560,7421.73
+2025-11,West,Energy Drink 250ml,cases,313,5648.82
+2025-12,North,Cola 500ml,cases,907,8979.69
+2025-12,North,Diet Cola 500ml,cases,575,5416.1
+2025-12,North,Lemon Soda 330ml,cases,428,3109.48
+2025-12,North,Orange Juice 1L,cases,259,3777.15
+2025-12,North,Still Water 1.5L,cases,1062,5214.62
+2025-12,North,Energy Drink 250ml,cases,180,3189.03
+2025-12,South,Cola 500ml,cases,999,9431.92
+2025-12,South,Diet Cola 500ml,cases,785,7508.99
+2025-12,South,Lemon Soda 330ml,cases,566,4062.23
+2025-12,South,Orange Juice 1L,cases,391,5516.83
+2025-12,South,Still Water 1.5L,cases,1525,7417.01
+2025-12,South,Energy Drink 250ml,cases,298,5423.7
+2025-12,East,Cola 500ml,cases,727,7263.26
+2025-12,East,Diet Cola 500ml,cases,470,4484.29
+2025-12,East,Lemon Soda 330ml,cases,334,2355.15
+2025-12,East,Orange Juice 1L,cases,213,3012.68
+2025-12,East,Still Water 1.5L,cases,883,4266.74
+2025-12,East,Energy Drink 250ml,cases,178,3154.94
+2025-12,West,Cola 500ml,cases,1047,10199.84
+2025-12,West,Diet Cola 500ml,cases,643,6092.19
+2025-12,West,Lemon Soda 330ml,cases,510,3685.8
+2025-12,West,Orange Juice 1L,cases,288,4141.56
+2025-12,West,Still Water 1.5L,cases,1247,5877.9
+2025-12,West,Energy Drink 250ml,cases,248,4334.11
