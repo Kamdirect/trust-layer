@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+import numpy as np
 import pandas as pd
 
 REQUIRED_COLUMNS = ["month", "region", "product", "unit", "volume", "revenue_gbp"]
@@ -184,15 +185,33 @@ def check_unit_consistency(df: pd.DataFrame, file: str, max_ratio: float = 3.0) 
 
 
 def check_outliers(
-    df: pd.DataFrame, file: str, exclude: list[int] | None = None, threshold: float = 3.5
+    df: pd.DataFrame, file: str, exclude: list[int] | None = None, threshold: float = 5.0
 ) -> list[Issue]:
-    """Volumes far from the product-region median, using the robust (MAD) z-score.
+    """Volumes far from what is normal for that product, region AND month.
+
+    1. Seasonality: each month gets a factor, the median across all product-regions of
+       volume / that product-region's median (July is about 1.3, January about 0.7).
+    2. Expected volume = product-region median x month factor.
+    3. Deviation is measured on a log scale, log(volume / expected), so +100% and -50%
+       count as equally far, and one scale works for big and small products.
+    4. The spread (MAD) is pooled across ALL rows. With only 12 months per product-region,
+       a per-group spread is unstable and makes ordinary noise look extreme.
+    5. threshold=5.0 was chosen on seeds 0-199 and checked on unseen seeds 5000-5199
+       (see scripts/outlier_sensitivity.py). Lower = more sensitive, more false alarms.
     Rows already explained by another check (e.g. a unit mix-up) are excluded."""
-    valid = df[df["product"].notna()].drop(index=exclude or [], errors="ignore")
-    grp = valid.groupby(["product", "region"])["volume"]
-    med = grp.transform("median")
-    mad = grp.transform(lambda s: (s - s.median()).abs().median())
-    z = 0.6745 * (valid["volume"] - med) / mad.where(mad > 0)
+    valid = df[(df["product"].notna()) & (df["volume"] > 0)].drop(index=exclude or [], errors="ignore")
+    if len(valid) < 10:
+        return []
+    pr_median = valid.groupby(["product", "region"])["volume"].transform("median")
+    seasonal = (valid["volume"] / pr_median).groupby(valid["month"]).transform("median")
+    expected = pr_median * seasonal
+
+    log_dev = np.log(valid["volume"] / expected)
+    centre = log_dev.median()
+    mad = (log_dev - centre).abs().median()
+    if mad == 0:
+        return []
+    z = 0.6745 * (log_dev - centre) / mad
     hits = z[z.abs() > threshold]
     if hits.empty:
         return []
@@ -208,7 +227,7 @@ def check_outliers(
             numbers={
                 "outlier_rows": len(rows),
                 "volume": [int(v) for v in rows["volume"]],
-                "typical_volume": [int(v) for v in med.loc[hits.index]],
+                "expected_volume": [int(round(v)) for v in expected.loc[hits.index]],
                 "robust_z": [round(float(v), 1) for v in hits],
             },
         )
