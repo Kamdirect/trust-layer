@@ -28,3 +28,18 @@ def test_ai_summary_without_key_explains_instead_of_crashing(monkeypatch):
     at.button[0].click().run()
     assert not at.exception
     assert any("no API key" in i.value for i in at.info)
+
+
+def test_ai_failure_is_not_cached(monkeypatch):
+    """A failed call must not be replayed after the key is fixed (bug found in production)."""
+    from src.explain import Explanation
+
+    monkeypatch.setattr("dotenv.load_dotenv", lambda *a, **k: False)
+    answers = iter([Explanation(error="AI summary unavailable: AuthenticationError."),
+                    Explanation(text="6 issues were found.", raw="6 issues were found.")])
+    monkeypatch.setattr("src.explain.explain", lambda issues, **k: next(answers))
+    at = AppTest.from_file(APP, default_timeout=30).run()
+    at.button[0].click().run()
+    assert any("AuthenticationError" in i.value for i in at.info)
+    at.button[0].click().run()
+    assert any("6 issues were found." in m.value for m in at.markdown)
