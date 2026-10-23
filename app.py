@@ -10,7 +10,7 @@ import streamlit as st
 from dotenv import load_dotenv
 
 from src.checks import SchemaError, run_all_checks, validate_schema
-from src.explain import MODEL, explain
+from src.explain import MODEL, Explanation, explain
 from src.report import (
     NEXT_STEPS,
     issues_table,
@@ -33,10 +33,20 @@ except Exception:  # no secrets file: fine, the AI summary will say it is unavai
     pass
 
 
+class _AIFailed(Exception):
+    """Raised inside the cached function so that failures are never cached."""
+
+
 @st.cache_data(show_spinner=False, ttl=3600)
 def ai_summary(_issues, cache_key: str):
-    """One model call per distinct set of results; repeat clicks reuse the answer."""
-    return explain(_issues)
+    """One model call per distinct set of results; repeat clicks reuse a successful answer.
+    Failures raise, because Streamlit does not cache exceptions, so a fixed key works at once."""
+    result = explain(_issues)
+    if result.error:
+        raise _AIFailed(result.error)
+    return result
+
+
 SEVERITY_ICON = {"critical": "🔴", "high": "🟠", "medium": "🟡", "info": "🔵"}
 
 st.set_page_config(page_title="Trust Layer", page_icon="🔎", layout="wide")
@@ -100,7 +110,10 @@ if st.button("Write AI summary", disabled=calls >= MAX_AI_CALLS_PER_SESSION):
     st.session_state["ai_calls"] = calls + 1
     with st.spinner("Writing summary..."):
         cache_key = repr([(i.check, i.file, i.rows, i.numbers) for i in issues])
-        st.session_state["explanation"] = ai_summary(issues, cache_key)
+        try:
+            st.session_state["explanation"] = ai_summary(issues, cache_key)
+        except _AIFailed as exc:
+            st.session_state["explanation"] = Explanation(error=str(exc))
 explanation = st.session_state.get("explanation")
 if explanation is not None:
     if explanation.error:

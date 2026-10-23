@@ -33,7 +33,7 @@ Tested against synthetic data with 6 deliberately planted problems and an answer
 | AI summaries produced, 10 live runs | **10 / 10** (5 / 10 before the fix below) |
 | AI sentences containing a wrong number, 10 live runs | **0 of 89** |
 | Correct AI sentences wrongly removed by the number check | **1 of 89** (wrote "April 2025" instead of "2025-04") |
-| Automated tests | **22 passing**, run on every push by GitHub Actions |
+| Automated tests | **23 passing**, run on every push by GitHub Actions |
 
 The six planted problems: subtotal rows (one labelled "Total", one with a blank name), duplicate rows, a missing region-month, an unexplained £2,500 finance adjustment, a unit mix-up (bottles entered as cases, ×24), and a ×10 typo.
 
@@ -55,6 +55,10 @@ This is a deliberate trade-off: slightly more false alarms in exchange for catch
 ### The AI layer returned nothing half the time
 
 The first live evaluation looked perfect on run 1 (16 sentences, 0 removed). Over 10 runs, **5 returned no text at all.** Claude Haiku 5.5 thinks before answering by default, and thinking counts towards the output token limit, so on some runs it used the whole budget before writing anything. A short summary of given facts needs no up-front reasoning, so thinking is now turned off: **10 / 10 runs produce a summary.** Without the 10-run evaluation, the live app would have shown a blank box to half its visitors.
+
+### A fixed API key kept showing the old error
+
+On the live app, the first click failed (the key was not yet set up correctly). After the key was fixed, every click still showed the same error. The app cached each AI result for an hour to save cost, and it cached failures too, so it kept replaying the old error without contacting the API. Failures are now never cached, and a regression test clicks twice (fail, then succeed) to prove it. The test fails on the old code and passes on the new.
 
 ### What the AI numbers do and don't show
 
@@ -80,7 +84,7 @@ src/explain.py             AI summary and the number check
 scripts/evaluate_ai.py     10 live AI runs; every answer saved to docs/ai_evaluation.json
 scripts/outlier_sensitivity.py   detection rate vs false alarms on unseen data
 app.py                     the Streamlit app
-tests/                     22 pytest tests (AI tests use a fake model: no cost)
+tests/                     23 pytest tests (AI tests use a fake model: no cost)
 ```
 
 **Run it yourself:**
@@ -89,7 +93,7 @@ tests/                     22 pytest tests (AI tests use a fake model: no cost)
 python -m venv .venv
 .venv\Scripts\activate          # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
-python -m pytest                 # 22 passed
+python -m pytest                 # 23 passed
 python -m src.evaluate           # scores and stress test
 python -m streamlit run app.py
 # optional AI summary: put ANTHROPIC_API_KEY=... in a .env file (never commit it)
