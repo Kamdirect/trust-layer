@@ -1,5 +1,7 @@
 # Trust Layer: find where two versions of the same numbers disagree, and why
 
+[![tests](https://github.com/Kamdirect/trust-layer/actions/workflows/tests.yml/badge.svg)](https://github.com/Kamdirect/trust-layer/actions/workflows/tests.yml)
+
 **[Live app](https://trust-layer-kamal.streamlit.app)** · Python · pandas · Streamlit · pytest
 
 ![Trust Layer app showing 6 issues, 2 critical](docs/app.png)
@@ -37,7 +39,7 @@ My first outlier check compared each month with the whole year. On the committed
 
 Drinks sales swing about ±30% with the seasons, so a whole-year comparison treats large swings as normal. On 200 unseen datasets it **missed 60% of numbers that had been doubled.** It only caught the planted error because ×10 is enormous.
 
-The fix: compare each value with what is normal for that product, region **and month**, and estimate the normal spread across all rows rather than 12 at a time (12 points gave an unstable estimate that made noise look extreme; my first attempt at the fix was worse than the original).
+The fix: compare each value with what is normal for that product, region **and month**, and estimate the normal spread across all rows rather than 12 at a time (12 points gave an unstable estimate that made noise look extreme; the first attempted fix was worse than the original).
 
 | Outlier check | False alarms on clean files | Catches ×2 error | Catches ×3 error |
 |---|---|---|---|
@@ -82,6 +84,7 @@ python -m streamlit run app.py
 - **Explained gaps are matched by region-month, not by amount.** A small duplicate in the same month as an unexplained adjustment would wrongly mark the adjustment as explained. Next fix: subtract each issue's amount and flag any residual.
 - Value-based subtotal detection assumes at most one subtotal per region-month.
 - The outlier threshold was calibrated on synthetic data with 8% noise; real data would need re-calibration.
+- **The test is partly circular.** I designed both the planted errors and the checks that find them, so 1,200/1,200 shows the checks catch the errors I anticipated, not that they catch every real-world error. Real extracts will contain problems I didn't think of.
 - The checks assume a fixed column layout (month, region, product, unit, volume, revenue_gbp).
 - **Planned:** an AI layer that writes a plain-English summary of the findings, given only the check results, with a rule in code that rejects any sentence containing a number not in those results.
 
