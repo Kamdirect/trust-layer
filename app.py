@@ -3,11 +3,14 @@
 Run locally:  python -m streamlit run app.py
 """
 
+import os
 from pathlib import Path
 
 import streamlit as st
+from dotenv import load_dotenv
 
 from src.checks import SchemaError, run_all_checks, validate_schema
+from src.explain import MODEL, explain
 from src.report import (
     NEXT_STEPS,
     issues_table,
@@ -19,6 +22,21 @@ from src.report import (
 )
 
 DATA = Path(__file__).parent / "data"
+MAX_AI_CALLS_PER_SESSION = 5
+
+# API key: from .env locally, or from Streamlit "Secrets" when deployed. Never in code.
+load_dotenv()
+try:
+    if "ANTHROPIC_API_KEY" in st.secrets:
+        os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
+except Exception:  # no secrets file: fine, the AI summary will say it is unavailable
+    pass
+
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def ai_summary(_issues, cache_key: str):
+    """One model call per distinct set of results; repeat clicks reuse the answer."""
+    return explain(_issues)
 SEVERITY_ICON = {"critical": "🔴", "high": "🟠", "medium": "🟡", "info": "🔵"}
 
 st.set_page_config(page_title="Trust Layer", page_icon="🔎", layout="wide")
@@ -70,6 +88,32 @@ c3.metric("Rows affected", s["rows_affected"])
 if s["issues"] == 0:
     st.success("No issues found. The two files agree and pass every check.")
 
+# ------------------------------------------------------------------ AI summary
+st.subheader("AI summary")
+st.caption(
+    f"Written by {MODEL} from the check results only: the files themselves are never sent. "
+    "Any sentence containing a number, month or product not found in the results is removed "
+    "automatically and listed below."
+)
+calls = st.session_state.setdefault("ai_calls", 0)
+if st.button("Write AI summary", disabled=calls >= MAX_AI_CALLS_PER_SESSION):
+    st.session_state["ai_calls"] = calls + 1
+    with st.spinner("Writing summary..."):
+        cache_key = repr([(i.check, i.file, i.rows, i.numbers) for i in issues])
+        st.session_state["explanation"] = ai_summary(issues, cache_key)
+explanation = st.session_state.get("explanation")
+if explanation is not None:
+    if explanation.error:
+        st.info(explanation.error)
+    else:
+        st.markdown(explanation.text)
+        if explanation.rejected:
+            with st.expander(f"⚠️ {len(explanation.rejected)} sentence(s) removed by the number check"):
+                for sentence in explanation.rejected:
+                    st.markdown(f"- {sentence}")
+        else:
+            st.caption("✅ Every number in this summary was found in the check results.")
+
 st.subheader("Issues")
 st.dataframe(issues_table(issues), hide_index=True, width="stretch")
 
@@ -110,7 +154,9 @@ st.caption("Row numbers are positions in File A, counting from 0 (spreadsheet ro
 # ------------------------------------------------------------------ download
 st.download_button(
     "Download report (Markdown)",
-    data=markdown_report(issues),
+    data=markdown_report(
+        issues, explanation=explanation.text if explanation and not explanation.error else None
+    ),
     file_name="trust_layer_report.md",
     mime="text/markdown",
 )

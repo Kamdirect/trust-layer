@@ -19,3 +19,12 @@ def test_app_asks_for_files_when_sample_is_off():
     at.sidebar.toggle[0].set_value(False).run()
     assert not at.exception
     assert "Upload both files" in at.info[0].value
+
+
+def test_ai_summary_without_key_explains_instead_of_crashing(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setattr("dotenv.load_dotenv", lambda *a, **k: False)
+    at = AppTest.from_file(APP, default_timeout=30).run()
+    at.button[0].click().run()
+    assert not at.exception
+    assert any("no API key" in i.value for i in at.info)
