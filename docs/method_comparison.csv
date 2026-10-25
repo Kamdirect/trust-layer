@@ -1,0 +1,7 @@
+,Exact match,Simple rules,Trust Layer
+problems detected (recall),0.8651,0.8475,0.9985
+flags that were genuine (precision),0.1053,0.8562,0.8933
+clean cases with any false alarm,1.0,0.475,0.4
+items to review per case,60.755,4.765,5.2
+false alarms per case,54.355,0.685,0.555
+ms per case,61.0084,18.968,36.1228

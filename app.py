@@ -128,7 +128,12 @@ if explanation is not None:
             st.caption("✅ Every number in this summary was found in the check results.")
 
 st.subheader("Issues")
-st.dataframe(issues_table(issues), hide_index=True, width="stretch")
+st.dataframe(
+    issues_table(issues).style.format({"£ at stake": "£{:,.0f}", "cases at stake": "{:,.0f}"},
+                                      na_rep=""),
+    hide_index=True, width="stretch")
+st.caption("Most severe first; within a severity, the most money at stake first. "
+           "Blank = size cannot be measured (for example, an error present in both files).")
 
 # ------------------------------------------------------------------ detail
 st.subheader("Details")
