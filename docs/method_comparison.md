@@ -67,7 +67,7 @@ the development data on purpose:
 | Clean cases with any false alarm | 100% | 47.5% | **40.0%** |
 | Items to review per case | 60.8 | **4.8** | 5.2 |
 | False alarms per case | 54.4 | 0.7 | **0.6** |
-| Time per case | 67 ms | **23 ms** | 46 ms |
+| Time per case (varies by computer) | ~60 ms | **~20 ms** | ~40 ms |
 
 **By problem type** (share detected):
 
