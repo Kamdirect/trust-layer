@@ -57,21 +57,45 @@ def summary(issues: list[Issue]) -> dict:
     }
 
 
+def impact(issue: Issue, issues: list[Issue]) -> dict:
+    """How much money and volume an issue puts at stake, so the biggest problems go first.
+
+    Taken from the issue's own numbers where it has them (subtotals, duplicates, finance
+    gaps), otherwise from the A-vs-B gap it causes in the same region-month. None when the
+    size cannot be measured: for example, an error present in both files causes no gap."""
+    n = issue.numbers
+    if issue.check == "subtotal_row":
+        return {"gbp": n["double_counted_revenue_gbp"], "cases": n["double_counted_volume"]}
+    if issue.check == "duplicate_row":
+        return {"gbp": n["duplicated_revenue_gbp"], "cases": n["duplicated_volume"]}
+    if issue.check == "reconciliation_gap":
+        return {"gbp": round(sum(abs(r["revenue_gap_gbp"]) for r in issue.rows), 2),
+                "cases": sum(abs(r["volume_gap"]) for r in issue.rows)}
+    places = {(r["month"], r["region"]) for r in issue.rows}
+    gaps = [r for i in issues if i.check == "reconciliation_explained" for r in i.rows
+            if (r["month"], r["region"]) in places and issue.check in r.get("explained_by", [])]
+    if gaps:
+        return {"gbp": round(sum(abs(r["revenue_gap_gbp"]) for r in gaps), 2),
+                "cases": sum(abs(r["volume_gap"]) for r in gaps)}
+    if issue.check == "outlier":
+        return {"gbp": None, "cases": int(sum(abs(v - e) for v, e in
+                                              zip(n["volume"], n["expected_volume"])))}
+    return {"gbp": None, "cases": None}
+
+
 def issues_table(issues: list[Issue]) -> pd.DataFrame:
-    """One row per issue, for display."""
-    return pd.DataFrame(
-        [
-            {
-                "severity": i.severity,
-                "check": i.check,
-                "file": i.file,
-                "issue": i.title,
-                "rows affected": len(i.rows),
-            }
-            for i in sorted(issues, key=lambda i: SEVERITY_ORDER.get(i.severity, 9))
-        ],
-        columns=["severity", "check", "file", "issue", "rows affected"],
-    )
+    """One row per issue, most severe first and, within a severity, largest money at stake first."""
+    rows = []
+    for i in issues:
+        size = impact(i, issues) if i.check != "reconciliation_explained" else {"gbp": None, "cases": None}
+        rows.append({"severity": i.severity, "check": i.check, "file": i.file, "issue": i.title,
+                     "rows affected": len(i.rows), "£ at stake": size["gbp"],
+                     "cases at stake": size["cases"]})
+    df = pd.DataFrame(rows, columns=["severity", "check", "file", "issue", "rows affected",
+                                     "£ at stake", "cases at stake"])
+    df["_order"] = df["severity"].map(SEVERITY_ORDER).fillna(9)
+    return (df.sort_values(["_order", "£ at stake", "cases at stake"], ascending=[True, False, False],
+                           na_position="last").drop(columns="_order").reset_index(drop=True))
 
 
 def rows_table(issue: Issue) -> pd.DataFrame:
@@ -105,10 +129,16 @@ def markdown_report(issues: list[Issue], explanation: str | None = None) -> str:
     ]
     if explanation:
         lines += ["## Plain-English summary (AI-written, number-checked)", "", explanation, ""]
-    for i in sorted(issues, key=lambda i: SEVERITY_ORDER.get(i.severity, 9)):
+    order = {row["issue"]: n for n, row in issues_table(issues).iterrows()}
+    for i in sorted(issues, key=lambda i: order.get(i.title, 99)):
         lines += [f"## [{i.severity.upper()}] {i.title}", "", f"Check: `{i.check}` · File: {i.file}", ""]
         if i.check in NEXT_STEPS:
             lines += [f"**What to check:** {NEXT_STEPS[i.check]}", ""]
+            size = impact(i, issues)
+            if size["gbp"] is not None or size["cases"] is not None:
+                parts = [f"£{size['gbp']:,.0f}" if size["gbp"] is not None else None,
+                         f"{size['cases']:,} cases" if size["cases"] is not None else None]
+                lines += ["**At stake:** " + ", ".join(p for p in parts if p), ""]
         if i.numbers:
             lines += [f"- {k}: {v}" for k, v in i.numbers.items()] + [""]
         if i.rows:
